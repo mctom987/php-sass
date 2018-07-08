@@ -47,6 +47,10 @@ class SassCompiler
             $file_path_elements = pathinfo($file_path);
             // get file's name without extension
             $file_name = $file_path_elements['filename'];
+            if (strpos($file_name, "_") === 0) {
+                // Skip partials
+                continue;
+            }
             // get .scss's content, put it into $string_sass
             $string_sass = file_get_contents($scss_folder . $file_name . ".scss");
             // compile this SASS code to CSS
